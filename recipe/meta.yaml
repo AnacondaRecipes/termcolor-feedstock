@@ -42,7 +42,7 @@ about:
   description: |
     ANSI color formatting for output in terminal.
   dev_url: https://github.com/termcolor/termcolor
-  doc_url: 
+  doc_url: https://github.com/termcolor/termcolor/blob/main/README.md
 
 extra:
   recipe-maintainers:
