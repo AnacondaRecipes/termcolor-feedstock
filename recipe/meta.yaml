@@ -1,5 +1,5 @@
 {% set name = "termcolor" %}
-{% set version = "2.1.0" %}
+{% set version = "2.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: b80df54667ce4f48c03fe35df194f052dc27a541ebbf2544e4d6b47b5d6949c4
+  sha256: aab9e56047c8ac41ed798fa36d892a37aca6b3e9159f3e0c24bc64a9b3ac7b7a
 
 build:
   number: 0
-  skip: True  # [py<37]
-  script: {{ PYTHON }} -m pip install . -vv
+
+  skip: True  # [not linux64]
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-build-isolation --no-deps
 
 requirements:
   host:
@@ -45,6 +47,13 @@ about:
   doc_url: https://github.com/termcolor/termcolor/blob/main/README.md
 
 extra:
+  skip-lints:
+    - avoid_noarch
+
+  anaconda-services:
+    recipe-maintainers:
+      - bkreider
+    reason: "Needed for gridstatus: https://anaconda.zendesk.com/agent/tickets/50503"
   recipe-maintainers:
     - jakirkham
     - ocefpaf
