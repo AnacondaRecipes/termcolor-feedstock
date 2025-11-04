@@ -1,27 +1,25 @@
 {% set name = "termcolor" %}
-{% set version = "2.1.0" %}
+{% set version = "3.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: b80df54667ce4f48c03fe35df194f052dc27a541ebbf2544e4d6b47b5d6949c4
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 610e6456feec42c4bcd28934a8c87a06c3fa28b01561d46aa09a9881b8622c58
 
 build:
   number: 0
-  skip: True  # [py<37]
+  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - python
     - hatch-vcs
-    - hatchling
+    - hatchling >=1.27
     - pip
-    - setuptools
-    - wheel
   run:
     - python
 
